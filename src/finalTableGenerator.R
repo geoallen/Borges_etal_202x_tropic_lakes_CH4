@@ -33,8 +33,8 @@ lakeShedsDBFpath = paste0(inDir, "/lakeSheds/hydroSHEDS_polygon_tropics.dbf")
 lakeshedOutpath = paste0(outDir, "/lakeSheds/hydroSHEDS_polygon_tropics.dbf")
 
 # lakeshed GIEMS paths:
-shedCoverageDir = paste0(inDir, "/lakeShed_landCover")
-allShedCoveragePaths = list.files(shedCoverageDir, ".dbf", recursive=T, full.names=T)
+shedCoverageDir = paste0(inDir, "/lakeShed_landCover/GIEMS")
+allShedCoveragePaths = list.files(shedCoverageDir, ".dbf$", full.names=T)
 shedCoverageOutpath = paste0(outDir, "/lakeShed_landCover/lakeShed_GIEMS.csv")
 
 # worldclim climate data:
@@ -125,6 +125,9 @@ lakePoly = data.frame(lakePoly, lakeShedArea_km2)
 for (i in 1:length(allShedCoveragePaths)){ 
   
   covDF = read.dbf(allShedCoveragePaths[i])
+  
+  # specify locations of duplicates (see below):
+  #covDF = cbind(covDF, cont=i)
   
   if (i == 1){
     covDF_glob = covDF
