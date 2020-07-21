@@ -141,7 +141,8 @@ for (i in 1:length(allShedCoveragePaths)){
 names(covDF_glob) = sub("VALUE", "GIEMS", names(covDF_glob))
 names(covDF_glob)[1] = "hylak_id"
 
-# average land cover of duplicated hylak_id:
+# there are a handful of land cover of duplicated hylak_id.
+# average duplicated hylak_ids: 
 dupIDs = covDF_glob$hylak_id[duplicated(covDF_glob$hylak_id)]
 
 for (i in 1:length(dupIDs)){
@@ -193,7 +194,7 @@ write.csv(lakePoly, sub(".dbf", ".csv", lakePolyOutpath), row.names=F)
 
 
 
-
+################################################################################
 ################################################################################
 # Join attributes to the lake shed shapefile (for display purposes):
 
